@@ -1,0 +1,32 @@
+package com.theer.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.theer.service.UserServive;
+
+// @Controller
+// public class UserController {
+
+//     @RequestMapping("/")
+//     public String getHomePage() {
+//         return "hello from controller";
+//     }
+// }
+
+@RestController
+public class UserController {
+
+    private UserServive userServive;
+
+    public UserController(UserServive userServive) {
+        this.userServive = userServive;
+    }
+
+    @GetMapping("/")
+    public String getHomePage() {
+        return this.userServive.handleHello();
+    }
+}
