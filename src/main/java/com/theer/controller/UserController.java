@@ -7,16 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.theer.service.UserServive;
 
-// @Controller
-// public class UserController {
-
-//     @RequestMapping("/")
-//     public String getHomePage() {
-//         return "hello from controller";
-//     }
-// }
-
-@RestController
+@Controller
 public class UserController {
 
     private UserServive userServive;
@@ -25,8 +16,24 @@ public class UserController {
         this.userServive = userServive;
     }
 
-    @GetMapping("/")
+    @RequestMapping("/")
     public String getHomePage() {
-        return this.userServive.handleHello();
+        String test = this.userServive.handleHello();
+        return "eric";
     }
 }
+
+// @RestController
+// public class UserController {
+
+// private UserServive userServive;
+
+// public UserController(UserServive userServive) {
+// this.userServive = userServive;
+// }
+
+// @GetMapping("/")
+// public String getHomePage() {
+// return this.userServive.handleHello();
+// }
+// }
