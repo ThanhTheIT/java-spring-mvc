@@ -1,5 +1,7 @@
 package com.theer.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,8 +22,9 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        String test = this.userServive.handleHello();
-        model.addAttribute("eric", test);
+        List<User> arrUsers = this.userServive.getAllUsersByEmail("theer@gmail.com");
+        System.out.println(arrUsers);
+        model.addAttribute("eric", "test");
         model.addAttribute("theer", "from controller with model");
         return "hello";
     }
