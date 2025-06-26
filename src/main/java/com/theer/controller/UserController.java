@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.theer.domain.User;
 import com.theer.repository.UserRepository;
 import com.theer.service.UserServive;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
@@ -39,6 +41,8 @@ public class UserController {
 
     @RequestMapping("/admin/user/{id}")
     public String getUserDetailPage(Model model, @PathVariable long id) {
+        User user = this.userServive.getUserById(id);
+        model.addAttribute("user", user);
         model.addAttribute("id", id);
         return "admin/user/user_detail";
     }
@@ -50,8 +54,42 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User theer) {
-        this.userServive.handleSaverUser(theer);
+    public String createUserPage(Model model, @ModelAttribute("newUser") User user) {
+        this.userServive.handleSaverUser(user);
+        return "redirect:/admin/user";
+    }
+
+    @RequestMapping("/admin/user/update_user/{id}") // GET
+    public String getUserUpdatePage(Model model, @PathVariable long id) {
+        User currentUser = userServive.getUserById(id);
+        model.addAttribute("newUser", currentUser);
+        return "admin/user/update_user";
+    }
+
+    @PostMapping("admin/user/update_user")
+    public String postUpdateUser(Model model, @ModelAttribute("newUser") User user) {
+        User currentUser = userServive.getUserById(user.getId());
+        if (currentUser != null) {
+            currentUser.setAddress(user.getAddress());
+            currentUser.setFullName(user.getFullName());
+            currentUser.setPhone(user.getPhone());
+            this.userServive.handleSaverUser(currentUser);
+        }
+        return "redirect:/admin/user";
+    }
+
+    @GetMapping("/admin/user/delete/{id}")
+    public String getDeleteUserPage(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+        // User user = new User();
+        // user.setId(id);
+        model.addAttribute("newUser", new User());
+        return "/admin/user/delete";
+    }
+
+    @PostMapping("/admin/user/delete")
+    public String postDeleteUser(Model model, @ModelAttribute("newUser") User user) {
+        this.userServive.handleDeleteUser(user.getId());
         return "redirect:/admin/user";
     }
 

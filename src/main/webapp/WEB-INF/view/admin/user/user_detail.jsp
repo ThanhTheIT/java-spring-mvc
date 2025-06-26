@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Users Detail ${id}</title>
+    <title>Users Detail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
@@ -36,9 +36,11 @@
                         <li class="list-group-item">ID: ${user.id}</li>
                         <li class="list-group-item">Email: ${user.email}</li>
                         <li class="list-group-item">Full name: ${user.fullName}</li>
+                         <li class="list-group-item">Phone number: ${user.phone}</li>
+                        <li class="list-group-item">Address: ${user.address}</li>
                     </ul>
                 </div>
-
+                <a href="/admin/user" class="btn btn-success mt-3">Back</a>
              </div>
         </div>
      </div>

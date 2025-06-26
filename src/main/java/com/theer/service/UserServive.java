@@ -27,9 +27,21 @@ public class UserServive {
         return this.userRepository.findByEmail(email);
     }
 
+    public User getUserById(long id) {
+        return this.userRepository.findById(id);
+    }
+
+    public User getUpdateUser(User user) {
+        return this.userRepository.save(user);
+    }
+
     public User handleSaverUser(User user) {
-        User theer = this.userRepository.save(user);
-        System.out.println(theer);
-        return theer;
+        User saveUser = this.userRepository.save(user);
+        System.out.println(saveUser);
+        return saveUser;
+    }
+
+    public void handleDeleteUser(long id) {
+        this.userRepository.deleteById(id);
     }
 }
