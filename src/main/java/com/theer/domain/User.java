@@ -1,9 +1,14 @@
 package com.theer.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,18 +28,28 @@ public class User {
     private String avatar;
 
     // roleID
+    // user many to one role
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
-    public User() {
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public User(long id, String email, String password, String fullName, String address, String phone, String avatar) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.fullName = fullName;
-        this.address = address;
-        this.phone = phone;
-        this.avatar = avatar;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public long getId() {

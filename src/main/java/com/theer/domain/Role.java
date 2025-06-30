@@ -1,9 +1,12 @@
 package com.theer.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,14 +19,17 @@ public class Role {
     private String name;
     private String description;
 
-    public Role() {
+    public List<User> getUsers() {
+        return users;
     }
 
-    public Role(long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
+
+    // role - one => many - user
+    @OneToMany(mappedBy = "role")
+    private List<User> users;
 
     public long getId() {
         return id;

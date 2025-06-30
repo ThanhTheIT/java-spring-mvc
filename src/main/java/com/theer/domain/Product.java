@@ -1,9 +1,14 @@
 package com.theer.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,22 +28,9 @@ public class Product {
     private long factory;
     private String target;
 
-    public Product() {
-    }
-
-    public Product(long id, String name, double price, String image, String detailDesc, String shortDesc, long quantity,
-            long sold, long factory, String target) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.image = image;
-        this.detailDesc = detailDesc;
-        this.shortDesc = shortDesc;
-        this.quantity = quantity;
-        this.sold = sold;
-        this.factory = factory;
-        this.target = target;
-    }
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     public long getId() {
         return id;
