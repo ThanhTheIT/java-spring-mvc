@@ -18,15 +18,6 @@ public class Role {
 
     private String name;
     private String description;
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
     // role - one => many - user
     @OneToMany(mappedBy = "role")
     private List<User> users;

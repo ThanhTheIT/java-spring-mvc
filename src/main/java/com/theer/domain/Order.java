@@ -25,17 +25,6 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @OneToMany(mappedBy = "order")
-    private List<Product> products;
-
     public long getId() {
         return id;
     }
