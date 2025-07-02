@@ -22,6 +22,7 @@ public class User {
     private String email;
     private String password;
     private String fullName;
+
     private String address;
     private String phone;
 
@@ -35,6 +36,14 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Order> order;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public long getId() {
         return id;

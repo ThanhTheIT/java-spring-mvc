@@ -25,6 +25,17 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetails;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public long getId() {
         return id;
     }
