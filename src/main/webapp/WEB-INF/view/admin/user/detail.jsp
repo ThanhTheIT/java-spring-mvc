@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Delete Users</title>
+        <title>Detail Users</title>
         <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -28,29 +28,30 @@
                             <li class="breadcrumb-item active"> Delete User</li>
                         </ol>
                     <div>
-                     
-                      <div class="container mt-5">
+                      <div class=" mt-5">
                         <div class="row">
-                            <div class="col-md-6 col-12 mx-auto">
-                                <h3 class="text-center mb-4">Delete a user</h3>
-                                 <div class="col-12 mx-auto">
+                            <div class="col-12 mx-auto">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <h3>Delete User: ${id}</h3>
+                                    <h3>User detail: ${id}</h3>
                                 </div>
+
                                 <hr />
-                                <div class="alert alert-danger">
-                                    Are you to delete this user ?
-                                </div>
-                                <form:form method="post"  modelAttribute="newUser" action="/admin/user/delete">
-                                    <div class="mb-3" style="display: none;">
-                                        <label class="form-label">ID: </label>
-                                        <form:input value="${id}" type="text" cssClass="form-control" path="id"/>
+
+                                <div class="card" style="width: 60%;">
+                                    <div class="card-header">
+                                        User information
                                     </div>
-                                    <button class="btn btn-danger">Confirm</button>
-                                    <a  type="submit" class="btn btn-warning" href="/admin/user">Back</a>
-                                </form:form>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">ID: ${user.id}</li>
+                                        <li class="list-group-item">Email: ${user.email}</li>
+                                        <li class="list-group-item">Full name: ${user.fullName}</li>
+                                        <li class="list-group-item">Phone number: ${user.phone}</li>
+                                        <li class="list-group-item">Address: ${user.address}</li>
+                                    </ul>
+                                </div>
+                                <a href="/admin/user" class="btn btn-success mt-3">Back</a>
                             </div>
-                        </div>    
+                        </div>
                     </div>
                 </main>
                 <jsp:include page="../layout/footer.jsp"></jsp:include>

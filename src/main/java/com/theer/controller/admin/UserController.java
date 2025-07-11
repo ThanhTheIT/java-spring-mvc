@@ -1,4 +1,4 @@
-package com.theer.controller;
+package com.theer.controller.admin;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class UserController {
     public String getUserPage(Model model) {
         List<User> users = this.userServive.getAllUsers();
         model.addAttribute("users", users);
-        return "admin/user/table_user";
+        return "admin/user/show";
     }
 
     @RequestMapping("/admin/user/{id}")
@@ -44,7 +44,7 @@ public class UserController {
         User user = this.userServive.getUserById(id);
         model.addAttribute("user", user);
         model.addAttribute("id", id);
-        return "admin/user/user_detail";
+        return "admin/user/detail";
     }
 
     @RequestMapping("/admin/user/create") // GET
@@ -63,7 +63,7 @@ public class UserController {
     public String getUserUpdatePage(Model model, @PathVariable long id) {
         User currentUser = userServive.getUserById(id);
         model.addAttribute("newUser", currentUser);
-        return "admin/user/update_user";
+        return "admin/user/update";
     }
 
     @PostMapping("admin/user/update_user")

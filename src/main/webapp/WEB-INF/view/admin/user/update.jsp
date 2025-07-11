@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Delete Users</title>
+        <title>Update Users</title>
         <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -25,32 +25,49 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                              <li class="breadcrumb-item"><a href="/admin/user">Users</a></li>
-                            <li class="breadcrumb-item active"> Delete User</li>
+                            <li class="breadcrumb-item active"> Update User</li>
                         </ol>
                     <div>
                      
-                      <div class="container mt-5">
+                    <div class=" mt-5">
                         <div class="row">
                             <div class="col-md-6 col-12 mx-auto">
-                                <h3 class="text-center mb-4">Delete a user</h3>
-                                 <div class="col-12 mx-auto">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h3>Delete User: ${id}</h3>
-                                </div>
+                                <h3 class="text-center mb-4">Update a user</h3>
                                 <hr />
-                                <div class="alert alert-danger">
-                                    Are you to delete this user ?
-                                </div>
-                                <form:form method="post"  modelAttribute="newUser" action="/admin/user/delete">
-                                    <div class="mb-3" style="display: none;">
+
+                                <form:form method="post" action="/admin/user/update_user" modelAttribute="newUser">
+                                
+                                <div class="mb-3" style="display: none;">
                                         <label class="form-label">ID: </label>
-                                        <form:input value="${id}" type="text" cssClass="form-control" path="id"/>
+                                        <form:input type="text" cssClass="form-control" path="id"/>
                                     </div>
-                                    <button class="btn btn-danger">Confirm</button>
-                                    <a  type="submit" class="btn btn-warning" href="/admin/user">Back</a>
+
+                                
+                                <div class="mb-3">
+                                        <label class="form-label">Email:</label>
+                                        <form:input type="email" class="form-control" path="email" disabled="true" />
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone number:</label>
+                                        <form:input type="text" class="form-control" path="phone"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Full Name: </label>
+                                        <form:input path="fullName" cssClass="form-control"/>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Address:</label>
+                                        <form:input path="address" cssClass="form-control"/>
+                                    </div>
+
+                                    <a href="/admin/user"  type="submit" class="btn btn-warning">Back</a>
+                                    <button type="submit" class="btn btn-warning">Update</button>
                                 </form:form>
                             </div>
-                        </div>    
+                        </div>
                     </div>
                 </main>
                 <jsp:include page="../layout/footer.jsp"></jsp:include>
