@@ -41,7 +41,7 @@
                             <li class="breadcrumb-item active"> Create User</li>
                         </ol>
                     <div>
-                            <div class="container mt-5">
+                        <div class="container mt-5">
                                 <div class="row">
                                     <div class="col-md-6 col-12 mx-auto">
                                         <h3 class="text-center mb-4">Create a user</h3>
@@ -86,10 +86,7 @@
                                             </div>
                                             <div class="col-12 mb-3">
                                                 <img style="max-height: 250px; display: none;" alt="avatar preview" id="avatarPreview" />
-                                            </div>
-                                            </div>
-                                            </div>
-                                            </div>
+                                            </div>                                   
                                             <div class="col-12 mb-5 ">
                                                 <button type="submit" class="btn btn-primary">Create</button>
                                             </div>
@@ -97,6 +94,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </main>
                 <jsp:include page="../layout/footer.jsp"></jsp:include>
