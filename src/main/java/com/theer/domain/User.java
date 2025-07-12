@@ -107,4 +107,12 @@ public class User {
                 + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
 
+    public List<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.order = order;
+    }
+
 }
