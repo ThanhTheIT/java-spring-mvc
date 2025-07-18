@@ -7,10 +7,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.theer.domain.User;
 import com.theer.repository.UserRepository;
+import com.theer.service.UploadService;
 import com.theer.service.UserServive;
+
+import jakarta.servlet.ServletContext;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -18,9 +24,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
 
     private final UserServive userServive;
+    private final UploadService uploadService;
 
-    public UserController(UserServive userServive, UserRepository userRepository) {
+    public UserController(UploadService uploadService, UserServive userServive, UserRepository userRepository,
+            ServletContext servletContext) {
         this.userServive = userServive;
+        this.uploadService = uploadService;
     }
 
     @RequestMapping("/")
@@ -48,25 +57,30 @@ public class UserController {
     }
 
     @GetMapping("/admin/user/create") // GET
-    public String getCreateUserPage(Model model) {
+    public String getUserCreatePage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
 
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User user) {
-        this.userServive.handleSaverUser(user);
-        return "redirect:/admin/user";
+    @PostMapping(value = "/admin/user/create")
+    public String createUserPage(Model model,
+            @ModelAttribute("newUser") User user,
+            @RequestParam("avatarFile") MultipartFile file) {
+
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+
+        // this.userServive.handleSaverUser(user);
+        return "redirect:/admin/user/";
     }
 
-    @RequestMapping("/admin/user/update_user/{id}") // GET
+    @RequestMapping("/admin/user/update/{id}") // GET
     public String getUserUpdatePage(Model model, @PathVariable long id) {
         User currentUser = userServive.getUserById(id);
         model.addAttribute("newUser", currentUser);
         return "admin/user/update";
     }
 
-    @PostMapping("admin/user/update_user")
+    @PostMapping("admin/user/update")
     public String postUpdateUser(Model model, @ModelAttribute("newUser") User user) {
         User currentUser = userServive.getUserById(user.getId());
         if (currentUser != null) {
