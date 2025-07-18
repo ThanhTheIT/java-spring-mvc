@@ -34,8 +34,8 @@ public class UploadService {
             if (!dir.exists())
                 dir.mkdirs();
             // Tạo file mới trên server với tên có gắn timestamp để tránh trùng
-           finalName = dir.getAbsolutePath() + File.separator + System.currentTimeMillis() + "-"
-                            + file.getOriginalFilename()
+            finalName = dir.getAbsolutePath() + File.separator + System.currentTimeMillis() + "-"
+                    + file.getOriginalFilename();
             File serverFile = new File(finalName);
 
             // Ghi dữ liệu file vào server

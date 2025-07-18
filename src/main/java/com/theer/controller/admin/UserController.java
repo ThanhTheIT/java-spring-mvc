@@ -2,6 +2,7 @@ package com.theer.controller.admin;
 
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,11 +26,14 @@ public class UserController {
 
     private final UserServive userServive;
     private final UploadService uploadService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserController(UploadService uploadService, UserServive userServive, UserRepository userRepository,
+    public UserController(BCryptPasswordEncoder bCryptPasswordEncoder, UploadService uploadService,
+            UserServive userServive, UserRepository userRepository,
             ServletContext servletContext) {
         this.userServive = userServive;
         this.uploadService = uploadService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @RequestMapping("/")
@@ -68,7 +72,7 @@ public class UserController {
             @RequestParam("avatarFile") MultipartFile file) {
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-
+        String hashPassword = this.bCryptPasswordEncoder.encode(user.getPassword());
         // this.userServive.handleSaverUser(user);
         return "redirect:/admin/user/";
     }
