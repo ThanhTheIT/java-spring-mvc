@@ -3,6 +3,7 @@ package com.theer.controller.admin;
 import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,14 +27,14 @@ public class UserController {
 
     private final UserServive userServive;
     private final UploadService uploadService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(BCryptPasswordEncoder bCryptPasswordEncoder, UploadService uploadService,
+    public UserController(PasswordEncoder passwordEncoder, UploadService uploadService,
             UserServive userServive, UserRepository userRepository,
             ServletContext servletContext) {
         this.userServive = userServive;
         this.uploadService = uploadService;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/")
@@ -72,9 +73,15 @@ public class UserController {
             @RequestParam("avatarFile") MultipartFile file) {
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-        String hashPassword = this.bCryptPasswordEncoder.encode(user.getPassword());
-        // this.userServive.handleSaverUser(user);
-        return "redirect:/admin/user/";
+        String hashPassword = this.passwordEncoder.encode(user.getPassword());
+
+        user.setAvatar(avatar);
+        user.setPassword(hashPassword);
+        user.setRole(this.userServive.getRoleByName(user.getRole().getName()));
+
+        // save
+        this.userServive.handleSaverUser(user);
+        return "redirect:/admin/user";
     }
 
     @RequestMapping("/admin/user/update/{id}") // GET
