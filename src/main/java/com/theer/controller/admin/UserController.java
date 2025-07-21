@@ -2,7 +2,6 @@ package com.theer.controller.admin;
 
 import java.util.List;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +16,6 @@ import com.theer.domain.User;
 import com.theer.repository.UserRepository;
 import com.theer.service.UploadService;
 import com.theer.service.UserService;
-
-import jakarta.servlet.ServletContext;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
