@@ -35,7 +35,7 @@
                                 <h3 class="text-center mb-4">Update a user</h3>
                                 <hr />
 
-                                <form:form method="post" action="/admin/user/update_user" modelAttribute="newUser">
+                                <form:form method="post" action="/admin/user/update" modelAttribute="newUser">
                                 
                                 <div class="mb-3" style="display: none;">
                                         <label class="form-label">ID: </label>
@@ -58,6 +58,10 @@
                                         <form:input path="fullName" cssClass="form-control"/>
                                     </div>
 
+                                    <form:select path="role.id" class="form-select">
+                                        <form:options items="${roles}" itemValue="id" itemLabel="name"/>
+                                    </form:select>
+               
                                     <div class="mb-3">
                                         <label class="form-label">Address:</label>
                                         <form:input path="address" cssClass="form-control"/>

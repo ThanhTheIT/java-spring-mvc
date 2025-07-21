@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.theer.domain.Role;
 import com.theer.domain.User;
 import com.theer.repository.UserRepository;
 import com.theer.service.UploadService;
-import com.theer.service.UserServive;
+import com.theer.service.UserService;
 
 import jakarta.servlet.ServletContext;
 
@@ -25,13 +26,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserController {
 
-    private final UserServive userServive;
+    private final UserService userServive;
     private final UploadService uploadService;
     private final PasswordEncoder passwordEncoder;
 
     public UserController(PasswordEncoder passwordEncoder, UploadService uploadService,
-            UserServive userServive, UserRepository userRepository,
-            ServletContext servletContext) {
+            UserService userServive, UserRepository userRepository) {
         this.userServive = userServive;
         this.uploadService = uploadService;
         this.passwordEncoder = passwordEncoder;
@@ -64,6 +64,7 @@ public class UserController {
     @GetMapping("/admin/user/create") // GET
     public String getUserCreatePage(Model model) {
         model.addAttribute("newUser", new User());
+
         return "admin/user/create";
     }
 
@@ -84,10 +85,11 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
-    @RequestMapping("/admin/user/update/{id}") // GET
+    @GetMapping("/admin/user/update/{id}") // GET
     public String getUserUpdatePage(Model model, @PathVariable long id) {
         User currentUser = userServive.getUserById(id);
         model.addAttribute("newUser", currentUser);
+        model.addAttribute("roles", userServive.getAllRoles());
         return "admin/user/update";
     }
 
@@ -98,6 +100,10 @@ public class UserController {
             currentUser.setAddress(user.getAddress());
             currentUser.setFullName(user.getFullName());
             currentUser.setPhone(user.getPhone());
+            if (user.getRole() != null && user.getRole().getId() != 0L) {
+                Role selectedRole = userServive.getRoleById(user.getRole().getId());
+                currentUser.setRole(selectedRole);
+            }
             this.userServive.handleSaverUser(currentUser);
         }
         return "redirect:/admin/user";

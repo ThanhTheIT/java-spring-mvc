@@ -48,6 +48,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                         <th>ID</th>
                         <th>Email</th>
                         <th>Full Name</th>
+                        <th>Role</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -57,6 +58,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                           <td>${user.id}</td>
                           <td>${user.email}</td>
                           <td>${user.fullName}</td>
+                          <td>${user.role.name}</td>
                           <td class="text-center">
                             <a
                               href="/admin/user/${user.id}"
@@ -64,7 +66,7 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                               >View</a
                             >
                             <a
-                              href="/admin/user/update_user/${user.id}"
+                              href="/admin/user/update/${user.id}"
                               class="btn btn-warning"
                               >Update</a
                             >
