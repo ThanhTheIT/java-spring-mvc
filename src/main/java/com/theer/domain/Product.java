@@ -20,7 +20,7 @@ public class Product {
     private String shortDesc;
     private long quantity;
     private long sold;
-    private long factory;
+    private String factory;
     private String target;
 
     public long getId() {
@@ -87,11 +87,11 @@ public class Product {
         this.sold = sold;
     }
 
-    public long getFactory() {
+    public String getFactory() {
         return factory;
     }
 
-    public void setFactory(long factory) {
+    public void setFactory(String factory) {
         this.factory = factory;
     }
 

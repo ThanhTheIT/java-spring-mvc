@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class UserController {
+public class UserAdminController {
 
     private final UserService userServive;
     private final UploadService uploadService;
     private final PasswordEncoder passwordEncoder;
 
-    public UserController(PasswordEncoder passwordEncoder, UploadService uploadService,
+    public UserAdminController(PasswordEncoder passwordEncoder, UploadService uploadService,
             UserService userServive, UserRepository userRepository) {
         this.userServive = userServive;
         this.uploadService = uploadService;
