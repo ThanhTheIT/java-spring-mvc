@@ -125,7 +125,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            0="/client/img/fruite-item-5.jpg"
+                            src="/client/img/fruite-item-5.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
