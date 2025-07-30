@@ -62,34 +62,66 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                     >
                       <div class="mb-3 col-12 col-md-6">
                         <label class="form-label">Email:</label>
+                        <c:set var="errorEmail">
+                          <form:errors
+                            path="email"
+                            cssClass="invalid-feedback"
+                          />
+                        </c:set>
                         <form:input
                           type="email"
-                          class="form-control"
+                          class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
                           path="email"
                         />
+                        ${errorEmail}
                       </div>
 
                       <div class="mb-3 col-12 col-md-6">
                         <label class="form-label">Password:</label>
+                        <c:set var="errorPassword">
+                          <form:errors
+                            path="password"
+                            cssClass="invalid-feedback"
+                          />
+                        </c:set>
                         <form:input
                           type="password"
-                          class="form-control"
+                          class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
                           path="password"
                         />
+                        ${errorPassword}
                       </div>
 
                       <div class="mb-3 col-12 col-md-6">
                         <label class="form-label">Phone number:</label>
+                        <c:set var="errorPhone">
+                          <form:errors
+                            path="phone"
+                            cssClass="invalid-feedback"
+                          />
+                        </c:set>
                         <form:input
                           type="text"
-                          class="form-control"
+                          class="form-control ${not empty errorPhone ? 'is-invalid' : ''}"
                           path="phone"
                         />
+                        ${errorPhone}
                       </div>
 
                       <div class="mb-3 col-12 col-md-6">
                         <label class="form-label">Full Name:</label>
-                        <form:input path="fullName" cssClass="form-control" />
+                        <c:set var="errorFullName">
+                          <form:errors
+                            path="fullName"
+                            cssClass="invalid-feedback"
+                          />
+                        </c:set>
+                        <form:input
+                          type="text"
+                          class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
+                          path="fullName"
+                        />
+                        ${errorFullName}
                       </div>
 
                       <div class="mb-3">
