@@ -3,11 +3,10 @@ package com.theer.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.theer.domain.Role;
+import com.theer.domain.Product;
+import com.theer.repository.ProductRepository;;
 
 @Repository
-public interface RoleReposiory extends JpaRepository<Role, Long> {
-
-    Role findByName(String name);
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
 }

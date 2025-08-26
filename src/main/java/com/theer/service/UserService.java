@@ -6,15 +6,15 @@ import org.springframework.stereotype.Service;
 
 import com.theer.domain.Role;
 import com.theer.domain.User;
-import com.theer.repository.RoleReposiory;
+import com.theer.repository.RoleRepository;
 import com.theer.repository.UserRepository;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final RoleReposiory roleReposiory;
+    private final RoleRepository roleReposiory;
 
-    public UserService(UserRepository userRepository, RoleReposiory roleReposiory) {
+    public UserService(UserRepository userRepository, RoleRepository roleReposiory) {
         this.userRepository = userRepository;
         this.roleReposiory = roleReposiory;
     }

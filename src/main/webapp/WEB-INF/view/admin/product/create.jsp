@@ -58,44 +58,82 @@ uri="http://www.springframework.org/tags/form" prefix="form" %>
                     <!-- Name -->
                     <div class="mb-3 col-12 col-md-6">
                       <label class="form-label">Name:</label>
-                      <form:input path="name" cssClass="form-control" />
+                      <c:set var="errorName">
+                        <form:errors path="name" cssClass="invalid-feedback" />
+                      </c:set>
+                      <form:input
+                        type="text"
+                        class="form-control ${not empty errorName ? 'is-invalid' : ''}"
+                        path="name"
+                      />
+                      ${errorName}
                     </div>
 
                     <!-- Price -->
                     <div class="mb-3 col-12 col-md-6">
                       <label class="form-label">Price:</label>
+                      <c:set var="errorPrice">
+                        <form:errors path="price" cssClass="invalid-feedback" />
+                      </c:set>
                       <form:input
                         path="price"
-                        cssClass="form-control"
+                        cssClass="form-control ${not empty errorPrice ? 'is-invalid' : ''}"
                         type="number"
                         step="0.01"
                       />
+                      ${errorPrice}
                     </div>
 
                     <!-- Detail description -->
                     <div class="mb-3 col-12">
                       <label class="form-label">Detail description:</label>
+                      <c:set var="errorDetailDesc">
+                        <form:errors
+                          path="detailDesc"
+                          cssClass="invalid-feedback"
+                        />
+                      </c:set>
                       <form:textarea
                         path="detailDesc"
-                        cssClass="form-control"
+                        cssClass="form-control  ${not empty errorPrice ? 'is-invalid' : ''}"
                         rows="3"
                       />
+                      ${errorDetailDesc}
                     </div>
 
                     <!-- Short description -->
                     <div class="mb-3 col-12">
                       <label class="form-label">Short description:</label>
-                      <form:input path="shortDesc" cssClass="form-control" />
+                      <c:set var="errorShortDesc">
+                        <form:errors
+                          path="shortDesc"
+                          cssClass="invalid-feedback"
+                        />
+                      </c:set>
+                      <form:input
+                        path="shortDesc"
+                        cssClass="form-control ${not empty errorShortDesce ? 'is-invalid' : ''}"
+                        type="text"
+                        step="0.01"
+                      />
+                      ${errorShortDesc}
                     </div>
 
                     <!-- Quantity -->
                     <div class="mb-3 col-12 col-md-6">
                       <label class="form-label">Quantity:</label>
+                      <c:set var="errorQuantity">
+                        <form:errors
+                          path="quantity"
+                          cssClass="invalid-feedback"
+                        />
+                      </c:set>
                       <form:input
                         path="quantity"
-                        cssClass="form-control"
+                        cssClass="form-control ${not empty errorQuantity ? 'is-invalid' : ''}"
                         type="number"
                       />
+                      ${errorQuantity}
                     </div>
 
                     <!-- Factory -->

@@ -29,14 +29,13 @@ public class User {
     private String email;
 
     @NotNull
-    @Size(min = 3, max = 30, message = "Password không hợp lệ!")
+    @Size(min = 3, max = 30, message = "Password không được để trống!")
     private String password;
 
     @NotNull
     @NotBlank(message = "Full name không được để trống!")
     private String fullName;
 
-    @NotNull
     private String address;
 
     @NotNull
@@ -45,7 +44,7 @@ public class User {
 
     private String avatar;
 
-    // roleID
+    // roleIDs
     // user many to one role
     @ManyToOne
     @JoinColumn(name = "role_id")
